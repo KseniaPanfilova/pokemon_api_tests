@@ -10,15 +10,16 @@ class HttpClient:
     def get(self, *, endpoint: str, headers: dict = None, params: dict = None) -> requests.Response:
         response = requests.get(url=f'{self.base_url}/{endpoint.lstrip('/')}',
                                 headers=headers,
-                                params=params)
+                                params=params,
+                                timeout=self.timeout)
         log_response(response)
         return response
 
     def post(self):
-        ...
+        pass
 
     def put(self):
-        ...
+        pass
 
     def delete(self):
-        ...
+        pass
