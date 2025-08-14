@@ -2,47 +2,61 @@ import pytest
 import allure
 
 POKEMON_NAMES = [
-    pytest.param("pikachu", id="Pikachu"),
-    pytest.param("charizard", id="Charizard"),
-    pytest.param("bulbasaur", id="Bulbasaur")
+    pytest.param('pikachu', id='Pikachu'),
+    pytest.param('charizard', id='Charizard'),
+    pytest.param('bulbasaur', id='Bulbasaur')
 ]
 
 POKEMON_IDS = [
-    pytest.param(25, "pikachu", id="25"),
-    pytest.param(6, "charizard", id="6"),
-    pytest.param(1, "bulbasaur", id="1")
+    pytest.param(25, 'pikachu', id='25'),
+    pytest.param(6, 'charizard', id='6'),
+    pytest.param(1, 'bulbasaur', id='1')
 ]
 
 LIST_PARAMS = [
-    pytest.param(1, 0, id="1_pokemon"),
-    pytest.param(5, 0, id="5_pokemons"),
-    pytest.param(10, 5, id="10_pokemons_offset_5")
+    pytest.param(1, 0, id='1_pokemon'),
+    pytest.param(5, 0, id='5_pokemons'),
+    pytest.param(10, 5, id='10_pokemons_offset_5')
 ]
 
 
 @pytest.mark.smoke
-@pytest.mark.parametrize("pokemon_name", POKEMON_NAMES)
-@allure.description('Тест получения покемона по имени')
-def test_get_pokemon_by_name(pokemon_tester, pokemon_name):
-    with allure.step(f"Запрос покемона '{pokemon_name}'"):
-        pokemon_tester.get_pokemon_by_name_test(pokemon_name)
+@pytest.mark.parametrize('pokemon_name', POKEMON_NAMES)
+@allure.description('Проверка получения покемона по названию.\n'
+                    'Цель: убедиться, что можно получить данные о покемоне по его названию.')
+def test_get_pokemon_by_name(api, checker, pokemon_name):
+    with allure.step(f'Запрос покемона "{pokemon_name}"'):
+        response = api.get_pokemon_by_name(pokemon_name)
+        with allure.step('Проверка статус-кода ответа'):
+            checker.status_code(response, 200)
+        with allure.step(f'Проверка, что в ответе приходит покемон "{pokemon_name}"'):
+            checker.json_value(response, field_name='name', expected_value=pokemon_name)
 
 
 @pytest.mark.smoke
 @pytest.mark.parametrize("pokemon_id, pokemon_name", POKEMON_IDS)
-@allure.description('Тест получения покемона по ID')
-def test_get_pokemon_by_id(pokemon_tester, pokemon_id, pokemon_name):
+@allure.description('Тест получения покемона по ID.\n'
+                    'Цель: убедиться, что можно получить данные о покемоне по его ID.')
+def test_get_pokemon_by_id(api, checker, pokemon_id, pokemon_name):
     with allure.step(f"Запрос покемона c ID '{pokemon_id}'"):
-        pokemon_tester.get_pokemon_by_id_test(pokemon_id, pokemon_name)
+        response = api.get_pokemon_by_id(pokemon_id)
+        with allure.step('Проверка статус-кода ответа'):
+            checker.status_code(response, 200)
+        with allure.step(f'Проверка, что в ответе приходит покемон "{pokemon_name}"'):
+            checker.json_value(response, field_name='name', expected_value=pokemon_name)
 
 
 @pytest.mark.smoke
 @pytest.mark.parametrize("limit, offset", LIST_PARAMS)
-@allure.description('Тест получения списка покемонов')
-def test_get_pokemons_list(pokemon_tester, limit, offset):
+@allure.description('Тест получения списка покемонов.\n'
+                    'Проверить, что список покемонов можно ограничить.')
+def test_get_pokemons_list(api, checker, limit, offset):
     with allure.step(f"Запрос списка (limit={limit}, offset={offset})"):
-        pokemon_tester.get_pokemons_list_test(limit, offset)
-
+        response = api.get_pokemons_list(limit, offset)
+        with allure.step('Проверка статус-кода ответа'):
+            checker.status_code(response, 200)
+        with allure.step(f'Проверка, что в списке {limit} элементов'):
+            checker.elements_count(response, limit)
 
 @pytest.mark.smoke
 @allure.description('Тест обработки 404 ошибки')
