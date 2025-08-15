@@ -12,5 +12,5 @@ def api():
 
 
 @pytest.fixture
-def checker():
+def check():
     return Checks()

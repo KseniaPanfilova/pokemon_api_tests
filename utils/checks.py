@@ -1,24 +1,24 @@
 import json
-import allure
+from jsonschema import validate
 
 
 class Checks:
 
     @staticmethod
-    def status_code(result, status_code: int) -> None:
+    def status_code(response, status_code: int) -> None:
         """Метод для проверки статус кода"""
-        assert result.status_code == status_code, (
-            f'ОШИБКА, Статус-код {result.status_code} не совпадает с ожидаемым {status_code}.')
-        print(f'Статус код = {result.status_code}')
+        assert response.status_code == status_code, (
+            f'ОШИБКА, Статус-код {response.status_code} не совпадает с ожидаемым {status_code}.')
+        print(f'Статус код = {response.status_code}')
 
     @staticmethod
-    def json_value(result, field_name: str = None, expected_value: str | int | bool = None) -> None:
+    def json_value(response, field_name: str = None, expected_value: str | int | bool = None) -> None:
         """Метод для проверки значений полей в ответе запроса"""
 
-        check = result.json()
+        check = response.json()
 
         if isinstance(check, str):
-            assert check == expected_value, f'ОШИБКА, ответ "{check}" не совпадает с ожидаемым: "{expected_value}".'
+            assert check == expected_value, f'ОШИБКА, ответ {check} не совпадает с ожидаемым: {expected_value}.'
             print(check)
             print('Ответ верный!')
             return
@@ -30,9 +30,26 @@ class Checks:
             elif isinstance(check_info, list):
                 check_info = check_info[int(key)]
 
-        assert check_info == expected_value, f'ОШИБКА, значение поля "{check_info}" не совпадает с ожидаемым "{expected_value}".'
+        assert check_info == expected_value, (f'ОШИБКА, значение поля {check_info} не совпадает с ожидаемым '
+                                              f'{expected_value}.')
         print(check_info)
         print(f'Значение {field_name} верно!')
+
+    @staticmethod
+    def data_type(response, field_name: str = None, expected_type: str = None) -> None:
+        """Метод для проверки соответствия типа данных"""
+        assert isinstance(response.json()[field_name], expected_type), (f'ОШИБКА, значение поля {field_name} '
+                                                                        f'не соответсвует ожидаемому типу данных '
+                                                                        f'{expected_type}')
+        print(type(response.json()[field_name]))
+        print(f'Тип поля {field_name} верный - {expected_type}.')
+
+    @staticmethod
+    def json_schema(response, schema: dict = None) -> None:
+        """Метод для валидации json-схемы"""
+        data = response.json()
+        assert validate(instance=data, schema=schema), 'ОШИБКА валидации'
+        print("JSON соответствует схеме")
 
     @staticmethod
     def elements_count(response, expected_count: int) -> None:
