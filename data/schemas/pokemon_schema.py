@@ -17,7 +17,7 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
@@ -30,7 +30,7 @@ pokemon_schema = {
                         "type": "integer"
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "ability",
                     "is_hidden",
@@ -51,7 +51,7 @@ pokemon_schema = {
                     "type": "string"
                 }
             },
-            "additionalProperties": false,
+            "additionalProperties": False,
             "required": [
                 "latest",
                 "legacy"
@@ -69,7 +69,7 @@ pokemon_schema = {
                         "type": "string"
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "name",
                     "url"
@@ -94,14 +94,14 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
                         ]
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "game_index",
                     "version"
@@ -126,7 +126,7 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
@@ -150,14 +150,14 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "name",
                                         "url"
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "rarity",
                                 "version"
@@ -165,7 +165,7 @@ pokemon_schema = {
                         }
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "item",
                     "version_details"
@@ -196,7 +196,7 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
@@ -220,14 +220,17 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "name",
                                         "url"
                                     ]
                                 },
                                 "order": {
-                                    "type": "null"
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ]
                                 },
                                 "version_group": {
                                     "type": "object",
@@ -239,14 +242,14 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "name",
                                         "url"
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "level_learned_at",
                                 "move_learn_method",
@@ -255,7 +258,7 @@ pokemon_schema = {
                         }
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "move",
                     "version_group_details"
@@ -266,7 +269,11 @@ pokemon_schema = {
             "type": "string"
         },
         "order": {
-            "type": "integer"
+            "type": [
+                "integer",
+                "null"
+            ]
+
         },
         "past_abilities": {
             "type": "array",
@@ -279,7 +286,10 @@ pokemon_schema = {
                             "type": "object",
                             "properties": {
                                 "ability": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 },
                                 "is_hidden": {
                                     "type": "boolean"
@@ -288,7 +298,7 @@ pokemon_schema = {
                                     "type": "integer"
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "is_hidden",
                                 "slot"
@@ -305,14 +315,14 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
                         ]
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "abilities",
                     "generation"
@@ -332,7 +342,7 @@ pokemon_schema = {
                     "type": "string"
                 }
             },
-            "additionalProperties": false,
+            "additionalProperties": False,
             "required": [
                 "name",
                 "url"
@@ -345,25 +355,37 @@ pokemon_schema = {
                     "type": "string"
                 },
                 "back_female": {
-                    "type": "null"
+                    "type": [
+                        "null",
+                        "string"
+                    ]
                 },
                 "back_shiny": {
                     "type": "string"
                 },
                 "back_shiny_female": {
-                    "type": "null"
+                    "type": [
+                        "null",
+                        "string"
+                    ]
                 },
                 "front_default": {
                     "type": "string"
                 },
                 "front_female": {
-                    "type": "null"
+                    "type": [
+                        "null",
+                        "string"
+                    ]
                 },
                 "front_shiny": {
                     "type": "string"
                 },
                 "front_shiny_female": {
-                    "type": "null"
+                    "type": [
+                        "null",
+                        "string"
+                    ]
                 },
                 "other": {
                     "type": "object",
@@ -375,10 +397,13 @@ pokemon_schema = {
                                     "type": "string"
                                 },
                                 "front_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "front_default"
                             ]
@@ -390,16 +415,22 @@ pokemon_schema = {
                                     "type": "string"
                                 },
                                 "front_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 },
                                 "front_shiny": {
                                     "type": "string"
                                 },
                                 "front_shiny_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "front_default",
                                 "front_shiny"
@@ -415,7 +446,7 @@ pokemon_schema = {
                                     "type": "string"
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "front_default",
                                 "front_shiny"
@@ -428,28 +459,40 @@ pokemon_schema = {
                                     "type": "string"
                                 },
                                 "back_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 },
                                 "back_shiny": {
                                     "type": "string"
                                 },
                                 "back_shiny_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 },
                                 "front_default": {
                                     "type": "string"
                                 },
                                 "front_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 },
                                 "front_shiny": {
                                     "type": "string"
                                 },
                                 "front_shiny_female": {
-                                    "type": "null"
+                                    "type": [
+                                        "null",
+                                        "string"
+                                    ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "back_default",
                                 "back_shiny",
@@ -458,7 +501,7 @@ pokemon_schema = {
                             ]
                         }
                     },
-                    "additionalProperties": false,
+                    "additionalProperties": False,
                     "required": [
                         "dream_world",
                         "home",
@@ -494,7 +537,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_gray",
@@ -526,7 +569,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_gray",
@@ -537,7 +580,7 @@ pokemon_schema = {
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "red-blue",
                                 "yellow"
@@ -574,7 +617,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -605,7 +648,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -633,7 +676,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -643,7 +686,7 @@ pokemon_schema = {
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "crystal",
                                 "gold",
@@ -663,7 +706,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "front_default",
                                         "front_shiny"
@@ -685,7 +728,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -709,7 +752,7 @@ pokemon_schema = {
                                             "type": "string"
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -718,7 +761,7 @@ pokemon_schema = {
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "emerald",
                                 "firered-leafgreen",
@@ -735,28 +778,37 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "back_female": {
-                                            "type": "null"
+                                            "type": [
+                                                "null",
+                                                "string"
+                                            ]
                                         },
                                         "back_shiny": {
                                             "type": "string"
                                         },
                                         "back_shiny_female": {
-                                            "type": "null"
+                                            "type": [
+                                                "null",
+                                                "string"
+                                            ]
                                         },
                                         "front_default": {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": [
+                                                "null",
+                                                "string"
+                                            ]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -771,28 +823,28 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "back_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "back_shiny": {
                                             "type": "string"
                                         },
                                         "back_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_default": {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -807,28 +859,28 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "back_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "back_shiny": {
                                             "type": "string"
                                         },
                                         "back_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_default": {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "back_default",
                                         "back_shiny",
@@ -837,7 +889,7 @@ pokemon_schema = {
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "diamond-pearl",
                                 "heartgold-soulsilver",
@@ -857,28 +909,28 @@ pokemon_schema = {
                                                     "type": "string"
                                                 },
                                                 "back_female": {
-                                                    "type": "null"
+                                                    "type": ["null", "string"]
                                                 },
                                                 "back_shiny": {
                                                     "type": "string"
                                                 },
                                                 "back_shiny_female": {
-                                                    "type": "null"
+                                                    "type": ["null", "string"]
                                                 },
                                                 "front_default": {
                                                     "type": "string"
                                                 },
                                                 "front_female": {
-                                                    "type": "null"
+                                                    "type": ["null", "string"]
                                                 },
                                                 "front_shiny": {
                                                     "type": "string"
                                                 },
                                                 "front_shiny_female": {
-                                                    "type": "null"
+                                                    "type": ["null", "string"]
                                                 }
                                             },
-                                            "additionalProperties": false,
+                                            "additionalProperties": False,
                                             "required": [
                                                 "back_default",
                                                 "back_shiny",
@@ -890,28 +942,28 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "back_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "back_shiny": {
                                             "type": "string"
                                         },
                                         "back_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_default": {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "animated",
                                         "back_default",
@@ -921,7 +973,7 @@ pokemon_schema = {
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "black-white"
                             ]
@@ -936,16 +988,16 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "front_default",
                                         "front_shiny"
@@ -958,23 +1010,23 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "front_default",
                                         "front_shiny"
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "omegaruby-alphasapphire",
                                 "x-y"
@@ -990,10 +1042,10 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "front_default"
                                     ]
@@ -1005,23 +1057,23 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         },
                                         "front_shiny": {
                                             "type": "string"
                                         },
                                         "front_shiny_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "front_default",
                                         "front_shiny"
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "icons",
                                 "ultra-sun-ultra-moon"
@@ -1037,22 +1089,22 @@ pokemon_schema = {
                                             "type": "string"
                                         },
                                         "front_female": {
-                                            "type": "null"
+                                            "type": ["null", "string"]
                                         }
                                     },
-                                    "additionalProperties": false,
+                                    "additionalProperties": False,
                                     "required": [
                                         "front_default"
                                     ]
                                 }
                             },
-                            "additionalProperties": false,
+                            "additionalProperties": False,
                             "required": [
                                 "icons"
                             ]
                         }
                     },
-                    "additionalProperties": false,
+                    "additionalProperties": False,
                     "required": [
                         "generation-i",
                         "generation-ii",
@@ -1065,7 +1117,7 @@ pokemon_schema = {
                     ]
                 }
             },
-            "additionalProperties": false,
+            "additionalProperties": False,
             "required": [
                 "back_default",
                 "back_shiny",
@@ -1096,14 +1148,14 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
                         ]
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "base_stat",
                     "effort",
@@ -1129,14 +1181,14 @@ pokemon_schema = {
                                 "type": "string"
                             }
                         },
-                        "additionalProperties": false,
+                        "additionalProperties": False,
                         "required": [
                             "name",
                             "url"
                         ]
                     }
                 },
-                "additionalProperties": false,
+                "additionalProperties": False,
                 "required": [
                     "slot",
                     "type"
@@ -1147,7 +1199,7 @@ pokemon_schema = {
             "type": "integer"
         }
     },
-    "additionalProperties": false,
+    "additionalProperties": False,
     "required": [
         "abilities",
         "base_experience",

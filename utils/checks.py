@@ -1,5 +1,6 @@
 import json
 from jsonschema import validate
+from jsonschema.exceptions import ValidationError
 
 
 class Checks:
@@ -36,20 +37,16 @@ class Checks:
         print(f'Значение {field_name} верно!')
 
     @staticmethod
-    def data_type(response, field_name: str = None, expected_type: str = None) -> None:
-        """Метод для проверки соответствия типа данных"""
-        assert isinstance(response.json()[field_name], expected_type), (f'ОШИБКА, значение поля {field_name} '
-                                                                        f'не соответсвует ожидаемому типу данных '
-                                                                        f'{expected_type}')
-        print(type(response.json()[field_name]))
-        print(f'Тип поля {field_name} верный - {expected_type}.')
-
-    @staticmethod
     def json_schema(response, schema: dict = None) -> None:
         """Метод для валидации json-схемы"""
         data = response.json()
-        assert validate(instance=data, schema=schema), 'ОШИБКА валидации'
-        print("JSON соответствует схеме")
+        try:
+            validate(instance=data, schema=schema)
+        except ValidationError as e:
+            print("Ошибка валидации JSON-схемы:", e.message)
+            print("Путь до ошибки в ответе:", list(e.path))
+            print("Путь до ошибки в схеме:", list(e.schema_path))
+            raise AssertionError(f'ОШИБКА валидации: {e.message}')
 
     @staticmethod
     def elements_count(response, expected_count: int) -> None:
